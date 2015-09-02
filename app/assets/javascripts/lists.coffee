@@ -6,8 +6,7 @@ $ ->
 
       if _urlRegexp.test(_value)
         _urls = getTextInsideLis("#results li")
-        _matches = _value.match(/(:\/\/|www.)([^/(www)]+)/i)
-        _value = _matches.pop() if _matches
+        _value = _value.match(/\w+[^htps:\/w\.][^\/]*/i).pop()
 
         if $.inArray(_value, _urls) <= -1
           $("#results").prepend("<li class='new'>" + _value + "</li>")
@@ -30,7 +29,7 @@ $ ->
 
 @syncData = ->
   _urls = getTextInsideLis("#results li.new")
-  if _urls && _urls.length > 1
+  if _urls && _urls.length > 0
     $.ajax
       url: "/lists"
       type: "POST"
