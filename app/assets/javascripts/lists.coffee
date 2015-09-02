@@ -30,15 +30,15 @@ $ ->
 
 @syncData = ->
   _urls = getTextInsideLis("#results li.new")
-
-  $.ajax
-    url: "/lists"
-    type: "POST"
-    data:
-      "urls": _urls
-    success: (response) ->
-      if response == 'successful'
-        $("#results li.new").removeClass('new').addClass('loaded')
+  if _urls
+    $.ajax
+      url: "/lists"
+      type: "POST"
+      data:
+        "urls": _urls
+      success: (response) ->
+        if response == 'successful'
+          $("#results li.new").removeClass('new').addClass('loaded')
 
 @getTextInsideLis = (els)->
   $(els).map( ->

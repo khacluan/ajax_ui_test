@@ -4,6 +4,8 @@ class ListsController < ApplicationController
   end
 
   def create
+    render text: 'no url inserted' unless params[:urls].present?
+
     params[:urls].reverse.each do |url|
       List.find_or_create_by(url: url)
     end
