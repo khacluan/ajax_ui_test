@@ -30,7 +30,7 @@ $ ->
 
 @syncData = ->
   _urls = getTextInsideLis("#results li.new")
-  if _urls
+  if _urls && _urls.length > 1
     $.ajax
       url: "/lists"
       type: "POST"
